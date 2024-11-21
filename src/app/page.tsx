@@ -1,4 +1,5 @@
 'use client'
+import LoaderPage from "@/components/Loader";
 import { ProductsProps } from "@/type/dataType";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -27,12 +28,7 @@ export default function Home() {
   }
   if (!products.length) {
     return (
-      <>
-        <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin ease-linear rounded-full w-20 h-20 border-t-2 border-b-2 border-gray-500 ml-3"></div>
-        </div>
-
-      </>
+      <LoaderPage />
     )
   }
   return (
@@ -44,11 +40,11 @@ export default function Home() {
               <>
                 <article className="max-w-sm w-full  rounded-lg shadow-lg overflow-hidden  transition-all ease-in-out duration-500 hover:scale-105" key={product.id}>
                   <Image
-                    src={product.category.image}
+                    src={product.images[1]}
                     width={500}
                     height={500}
                     alt="Picture of the author"
-                    className="object-cover h-40 w-full"
+                    className="object-cover h-auto w-full"
                   />
                   <div className="flex flex-col gap-1 my-4 px-4">
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-50">{product.title}</h2>
