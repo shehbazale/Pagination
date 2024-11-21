@@ -1,19 +1,19 @@
 'use client'
+import { ProductsProps } from "@/type/dataType";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Spinner from '../assests/__Iphone-spinner-1.gif'
 
 export default function Home() {
-  const [products, setProducts] = useState<any[]>([])
+  const [products, setProducts] = useState<ProductsProps[]>([])
   const [offset, setOffset] = useState<number>(0)
   const fetchData = async () => {
-    let response = await fetch(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`)
-    let data = await response.json();
+    const response = await fetch(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`)
+    const data = await response.json();
     // console.log('Products Data', data.length)
     console.log('Products Data', data)
     if (data.length) {
-       setProducts(data)
-      }
+      setProducts(data)
+    }
   }
   useEffect(() => {
     fetchData()
@@ -25,23 +25,22 @@ export default function Home() {
   const handlePrevious = () => {
     setOffset((pre) => pre - 12)
   }
-  if(!products.length){
+  if (!products.length) {
     return (
       <>
-      <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen">
           <div className="animate-spin ease-linear rounded-full w-20 h-20 border-t-2 border-b-2 border-gray-500 ml-3"></div>
         </div>
-      
+
       </>
     )
   }
-
   return (
     <>
       <div className="w-full h-screen  p-12">
         <div className="flex flex-col">
           <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4 " >
-            {products.map((product) => (
+            {products?.map((product) => (
               <>
                 <article className="max-w-sm w-full  rounded-lg shadow-lg overflow-hidden  transition-all ease-in-out duration-500 hover:scale-105" key={product.id}>
                   <Image
@@ -65,9 +64,10 @@ export default function Home() {
               `} onClick={handlePrevious} disabled={offset === 0}>
               Previous
             </button>
-            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-28 "
-            disabled={!products.length}
-            onClick={handleNext}>
+            <button type="button" className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-28
+             ${products.length < 12 ? "cursor-not-allowed" : "cursor-pointer"} `}
+              disabled={products.length < 12}
+              onClick={handleNext}>
               Next
             </button>
           </div>
