@@ -1,74 +1,12 @@
-'use client'
-import LoaderPage from "@/components/Loader";
-import { ProductsProps } from "@/type/dataType";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import React from "react";
+import Products from "./products/page";
 
-export default function Home() {
-  const [products, setProducts] = useState<ProductsProps[]>([])
-  const [offset, setOffset] = useState<number>(0)
-  const fetchData = async () => {
-    const response = await fetch(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`)
-    const data = await response.json();
-    // console.log('Products Data', data.length)
-    console.log('Products Data', data)
-    if (data.length) {
-      setProducts(data)
-    }
-  }
-  useEffect(() => {
-    fetchData()
-  }, [offset])
-
-  const handleNext = () => {
-    setOffset((pre) => pre + 12)
-  }
-  const handlePrevious = () => {
-    setOffset((pre) => pre - 12)
-  }
-  if (!products.length) {
-    return (
-      <LoaderPage />
-    )
-  }
+const Page = () => {
   return (
     <>
-      <div className="w-full h-screen  p-12">
-        <div className="flex flex-col">
-          <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4 " >
-            {products?.map((product) => (
-              <>
-                <article className="max-w-sm w-full  rounded-lg shadow-lg overflow-hidden  transition-all ease-in-out duration-500 hover:scale-105" key={product.id}>
-                  <Image
-                    src={product.images[1]}
-                    width={500}
-                    height={500}
-                    alt="Picture of the author"
-                    className="object-cover h-auto w-full"
-                  />
-                  <div className="flex flex-col gap-1 my-4 px-4">
-                    <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-50">{product.title}</h2>
-                    <span className="font-semibold text-gray-800 dark:text-gray-50">${product.price}</span>
-                  </div>
-                </article>
-              </>
-            ))}
-          </div>
-          <div className="flex justify-center items-center !my-12 space-x-4">
-            <button type="button" className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-28
-              ${offset === 0 ? "cursor-not-allowed" : "cursor-pointer"}
-              `} onClick={handlePrevious} disabled={offset === 0}>
-              Previous
-            </button>
-            <button type="button" className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-28
-             ${products.length < 12 ? "cursor-not-allowed" : "cursor-pointer"} `}
-              disabled={products.length < 12}
-              onClick={handleNext}>
-              Next
-            </button>
-          </div>
-        </div>
-      </div>
+      <Products />
     </>
   );
-}
+};
+
+export default Page;
