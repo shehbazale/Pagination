@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Products from "./products/page";
 
 const Page = () => {
   return (
     <>
-      <Products />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Products />
+      </Suspense>
     </>
   );
 };
