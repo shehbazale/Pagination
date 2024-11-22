@@ -1,4 +1,4 @@
-import { ProductsProp, ProductsProps } from "@/type/dataType";
+import { ProductsProp } from "@/type/dataType";
 import Image from "next/image";
 import React from "react";
 import Button from "./Button";

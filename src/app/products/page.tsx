@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import LoaderPage from "@/components/Loader";
 import { ProductsProps } from "@/type/dataType";
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import ProductsPage from "@/components/Products";
 
 export default function Products() {
