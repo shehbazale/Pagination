@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   images: {
     domains: [
       "placeimg.com",
@@ -8,14 +11,7 @@ const nextConfig = {
       "veirdo.in",
       "i.imgur.com"
     ]
-    // remotePatterns: [
-    //   {
-    //     protocol: '*',
-    //     hostname: "*",
-    //     port: '',
-    //     pathname: '/**',
-    //   },
-    // ],
+  
   },
 };
 
