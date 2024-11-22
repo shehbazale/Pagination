@@ -15,10 +15,10 @@ const ProductsPage: React.FC<ProductsProp> = ({ products }) => {
           <Image
             // src={product.images[1] || JSON.parse(product.images[0])[0]}
             src="https://i.imgur.com/FDwQgLy.jpeg"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             alt={product.title}
-            className="object-cover h-auto w-full rounded-md"
+            className="object-cover h-56 w-full rounded-md"
           />
           <div className="flex flex-col justify-between  my-4 px-4 h-44 ">
             <h2 className="text-base font-semibold text-gray-800 dark:text-gray-50">

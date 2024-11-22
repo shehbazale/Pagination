@@ -44,8 +44,11 @@ export default function Products() {
 
   return (
     <>
-      <div className="w-full h-screen p-3 md:p06 lg:p-20">
-        <h1 className="mb-6 text-center text-3xl font-bold">Products </h1>
+      <div className="w-full h-screen p-3 md:p-6 xl:p-20 ">
+        {/* <h1 className="mb-6 text-center text-3xl font-bold">Products </h1> */}
+        <h1 className="text-2xl md:text-3xl pl-2 my-6 border-l-4  font-sans font-bold border-teal-400  dark:text-gray-200 ">
+          Products
+        </h1>
         <div className="flex flex-col">
           <ProductsPage products={products} />
           <div className="flex justify-center items-center !my-12 ">
@@ -98,7 +101,7 @@ export default function Products() {
             <Button
               label=">"
               onClick={handleNext}
-              disabled={products.length < 12}
+              disabled={page === 8}
               className="border border-l-0 border-gray-300 rounded-e-lg font-bold"
             />
           </div>
