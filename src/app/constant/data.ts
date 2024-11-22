@@ -1,6 +1,7 @@
-export const paginatioButtonProps = (props: any) => {
+import { PaginationButtonProps } from "@/type/dataType"
+
+export const paginatioButtonProps = (props: PaginationButtonProps) => {
     const { page, router, handlePrevious, handleNext } = props
-    console.log("page No is ::", page)
 
     return ([
         {
