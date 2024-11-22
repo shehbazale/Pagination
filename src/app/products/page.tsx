@@ -59,6 +59,7 @@ export default function Products() {
             {paginationButtons?.map((item, index) => {
               return (
                 <Button
+                key={index}
                   label={item.label}
                   onClick={index === 0 ? handlePrevious : index === -1 ? handleNext : item.onClick}
                   disabled={item.disable}
