@@ -3,11 +3,19 @@ const nextConfig = {
   images: {
     domains: [
       "placeimg.com",
-      "images.unsplash.com",
-      "i.imgur.com",
-      "images.pexels.com",
-      "i.imgur.com",
-    ],
+      "unsplash.com",
+      "imgur.com",
+      "veirdo.in",
+      "i.imgur.com"
+    ]
+    // remotePatterns: [
+    //   {
+    //     protocol: '*',
+    //     hostname: "*",
+    //     port: '',
+    //     pathname: '/**',
+    //   },
+    // ],
   },
 };
 

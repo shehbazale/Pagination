@@ -3,8 +3,9 @@ export interface ProductsProps {
   id: number;
   title: string;
   price: number;
-  // category:{image: string};
+  category:{name: string};
   images: string[];
+  description:string;
 }
 
 // ************************* button data type **********
@@ -13,4 +14,9 @@ export interface ButtonProps {
   disabled?: boolean;
   className?: string;
   label?: string;
+}
+
+// **************************
+export interface ProductsProp {
+  products: ProductsProps[];
 }
