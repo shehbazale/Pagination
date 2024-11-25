@@ -14,7 +14,6 @@ export default function Products() {
   const searchParams = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1");
   const offset = (page - 1) * 12;
-
   const fetchData = async () => {
     const response = await fetch(
       `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=12`
@@ -22,14 +21,13 @@ export default function Products() {
     const data = await response.json();
     setProducts(data);
   };
-
   useEffect(() => {
     if (!searchParams.get("page")) {
       router.replace(`/products?page=1`);
       return;
     }
     fetchData();
-  }, [offset]);
+  }, [page]);
 
   const handleNext = () => {
     router.push(`/products?page=${page + 1}`);
@@ -46,7 +44,6 @@ export default function Products() {
   const buttonPageProp = { page, router, handlePrevious, handleNext }
   const paginationButtons = paginatioButtonProps(buttonPageProp);
 
-
   return (
     <>
       <div className="w-full h-screen p-3 md:p-6 xl:p-20 ">
@@ -59,9 +56,9 @@ export default function Products() {
             {paginationButtons?.map((item, index) => {
               return (
                 <Button
-                key={index}
+                  key={index}
                   label={item.label}
-                  onClick={index === 0 ? handlePrevious : index === -1 ? handleNext : item.onClick}
+                  onClick={item.onClick}
                   disabled={item.disable}
                   className={item.className}
                 />
