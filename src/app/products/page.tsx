@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ProductsPage from "@/components/Products";
 import { paginatioButtonProps } from "../constant/data";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Products() {
   const [products, setProducts] = useState<ProductsProps[]>([]);
@@ -46,6 +47,7 @@ export default function Products() {
 
   return (
     <>
+      <ScrollToTop />
       <div className="w-full h-screen p-3 md:p-6 xl:p-20 ">
         <h1 className="text-2xl md:text-3xl pl-2 my-6 border-l-4  font-sans font-bold border-teal-400  dark:text-gray-200 ">
           Products
